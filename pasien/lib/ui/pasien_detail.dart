@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../model/pasien.dart';
+import 'pasien_update_form.dart';
 
 class PasienDetail extends StatefulWidget {
   final Pasien pasien;
