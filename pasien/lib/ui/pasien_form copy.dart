@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
-import '../model/pasien.dart';
+import '/model/pasien.dart';
 import '/ui/pasien_detail.dart';
 
-class PasienUpdateForm extends StatefulWidget {
-  final Pasien pasien;
-
-  const PasienUpdateForm({Key? key, required this.pasien}) : super(key: key);
-  _PasienUpdateFormState createState() => _PasienUpdateFormState();
+class PasienForm extends StatefulWidget {
+  const PasienForm({Key? key}) : super(key: key);
+  _PasienFormState createState() => _PasienFormState();
 }
 
-class _PasienUpdateFormState extends State<PasienUpdateForm> {
+class _PasienFormState extends State<PasienForm> {
   final _formKey = GlobalKey<FormState>();
   final _namaPasienCtrl = TextEditingController();
 
   @override
-  void iniState() {
-    super.initState();
-    setState(() {
-      _namaPasienCtrl.text = widget.pasien.namaPasien;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Ubah Data Pasien")),
+      appBar: AppBar(title: const Text("Tambah Data Diri")),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -38,19 +28,19 @@ class _PasienUpdateFormState extends State<PasienUpdateForm> {
 
   _fieldNamaPasien() {
     return TextField(
-      decoration: const InputDecoration(labelText: "Nama Pasien"),
+      decoration: const InputDecoration(labelText: "tambah data diri pasien"),
       controller: _namaPasienCtrl,
     );
   }
 
   _tombolSimpan() {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
       onPressed: () {
         Pasien pasien = new Pasien(namaPasien: _namaPasienCtrl.text);
-        Navigator.pop(context);
         Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => PasienDetail(pasien: pasien)));
       },
-      child: const Text("Simpan Perubahan"));
+      child: const Text("Simpan"),);
   }
 }
